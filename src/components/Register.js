@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (username, email, password) => {
     const payload = agent.Auth.register(username, email, password);
     dispatch({ type: 'REGISTER', payload });
-  }
+  },
+  onUnload: () => dispatch({ type: 'REGISTER_PAGE_UNLOAD' })
 });
 
 class Register extends React.Component {
@@ -31,6 +32,10 @@ class Register extends React.Component {
       ev.preventDefault();
       this.props.onSubmit(username, email, password);
     }
+  }
+
+  componentWillUnMount() {
+    this.props.onUnload();
   }
 
   render() {

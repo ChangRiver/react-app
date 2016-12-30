@@ -18,8 +18,10 @@ const requests = {
   get: url =>
     superagent.get(`${API_ROOT}/${url}`).use(tokenplugin).then(responseBody),
   post: (url, body) =>
-    superagent.post(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody)
-};
+    superagent.post(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody),
+  put: (url, body) =>
+    superagent.put(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody)
+ };
 
 const Articles = {
   all: page =>
@@ -32,7 +34,9 @@ const Auth = {
   login: (email, password) =>
     requests.post('/users/login', { user: { email, password } }),
   register: (username, email, password) =>
-    requests.post('/users', { user: { username, email, password } })
+    requests.post('/users', { user: { username, email, password } }),
+  save: user =>
+    requests.put('/user', { user })
 };
 
 export default {
