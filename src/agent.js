@@ -20,12 +20,27 @@ const requests = {
   post: (url, body) =>
     superagent.post(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody),
   put: (url, body) =>
-    superagent.put(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody)
+    superagent.put(`${API_ROOT}/${url}`, body).use(tokenplugin).then(responseBody),
+  del: url =>
+    superagent.del(`${API_ROOT}${url}`).use(tokenplugin).then(responseBody)
  };
 
 const Articles = {
   all: page =>
-    requests.get(`/articles?limit=10`)
+    requests.get(`/articles?limit=10`),
+  get: slug =>
+    requests.get(`/articles/${slug}`),
+  del: slug =>
+    requests.del(`/articles/${slug}`)
+};
+
+const Comments = {
+  forArticle: slug =>
+    requests.get(`/articles/${slug}/comments`),
+  create: (slug, comment) => 
+    requests.post(`/articles/${slug}/comments`, { comment }),
+  delete: (slug, commentId) =>
+    requests.del(`/articles/${slug}/comments/${commentId}`)
 };
 
 const Auth = {
@@ -42,6 +57,7 @@ const Auth = {
 export default {
   Articles,
   Auth,
+  Comments,
   setToken: _token => { token = _token; }
 };
 
