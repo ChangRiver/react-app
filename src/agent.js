@@ -37,7 +37,13 @@ const Articles = {
   favoritedBy: (author, page) =>
     requests.get(`/articles?favorited=${encodeURIComponent(author)}&limit=5`),
   feed: () =>
-    requests.get('/articles/feed?limit=10')
+    requests.get('/articles/feed?limit=10'),
+  byTag: (tag, page) => 
+    requests.get(`/articles?tag=${encodeURIComponent(tag)}&limit=10`)
+};
+
+const Tags = {
+  getAll: () => requests.get('/tags')
 };
 
 const Profile = {
@@ -74,6 +80,7 @@ export default {
   Auth,
   Comments,
   Profile,
+  Tags,
   setToken: _token => { token = _token; }
 };
 
