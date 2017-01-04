@@ -5,13 +5,17 @@ import common from './reducers/common';
 import home from './reducers/home';
 import settings from './reducers/settings'
 import article from './reducers/article';
+import profile from './reducers/profile';
+import articleList from './reducers/articleList';
 
 const reducer = combineReducers({
   auth,
   common,
   home,
   settings,
-  article
+  article,
+  articleList,
+  profile
 });
 
 const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware);

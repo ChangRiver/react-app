@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ArticleList from '../ArticleList';
 
 const mapStateToProps = state => ({
+  ...state.articleList,
   articles: state.home.articles
 });
 

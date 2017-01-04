@@ -5,6 +5,8 @@ export default (state = {}, action) => {
         ...state,
         articles: action.payload.articles
       };
+    case 'HOME_PAGE_UNLOADED':
+      return {};
   }
 
   return state;
