@@ -5,7 +5,8 @@ export default (state = {}, action) => {
         ...state,
         articles: action.payload[1].articles,
         articlesCount: action.payload[1].articlesCount,
-        tab: action.tab
+        tab: action.tab,
+        currentPage: 0
       };
     case 'HOME_PAGE_UNLOADED':
       return {};
@@ -24,15 +25,25 @@ export default (state = {}, action) => {
         ...state,
         articles: action.payload.articles,
         articlesCount: action.payload.articlesCount,
-        tab: action.tab
+        tab: action.tab,
+        tab: null,
+        currentPage: 0
       };
+    case 'SET_PAGE':
+        return {
+          ...state,
+          articles: action.payload.articles,
+          articlesCount: action.payload.articlesCount,
+          currentPage: action.page
+        };
     case 'APPLY_TAG_FILTER':
       return {
         ...state,
         articles: action.payload.articles,
         articlesCount: action.payload.articlesCount,
         tab: null,
-        tag: action.tag
+        tag: action.tag,
+        currentPage: 0
       };
   }
 
