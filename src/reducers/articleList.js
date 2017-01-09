@@ -26,7 +26,7 @@ export default (state = {}, action) => {
         articles: action.payload.articles,
         articlesCount: action.payload.articlesCount,
         tab: action.tab,
-        tab: null,
+        tag: null,
         currentPage: 0
       };
     case 'SET_PAGE':
